@@ -1,0 +1,19 @@
+{
+  "name": "mmm-globe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukeSkywalker92/MMM-Globe.git"
+  },
+  "author": "Luke Scheffler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LukeSkywalker92/MMM-Globe/issues"
+  },
+  "homepage": "https://github.com/LukeSkywalker92/MMM-Globe#readme"
+}
