@@ -1,3 +1,12 @@
+/* global Module */
+
+/* Magic Mirror
+ * Module: MMM-Globe
+ *
+ * By Luke Scheffler https://github.com/LukeSkywalker92
+ * MIT Licensed.
+ */
+
 Module.register("MMM-Globe",{
     // Default module config.
     defaults: {
