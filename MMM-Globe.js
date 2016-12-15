@@ -55,10 +55,16 @@ Module.register("MMM-Globe", {
 	getDom: function () {
 		var wrapper = document.createElement("div");
 		var image = document.createElement("img");
-		image.src = this.url + '?' + new Date().getTime();
+		if (this.config.ownImagePath != '') {
+			image.src = this.url;
+		} else {
+			image.src = this.url + '?' + new Date().getTime();
+			image.className = 'MMM-Globe-image';
+		}
+
 		image.width = this.config.imageSize.toString();
 		image.height = this.config.imageSize.toString();
-		image.className = 'MMM-Globe-image';
+
 		wrapper.appendChild(image);
 		return wrapper;
 	}
