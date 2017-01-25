@@ -16,10 +16,7 @@ The entry in `config.js` can include the following options:
 
 |Option|Description|
 |---|---|
-|`style`|Style of the image. There are four diffrent styles available. You can preview them: <br>
-[asia-centric images](http://rammb.cira.colostate.edu/ramsdis/online/himawari-8.asp) <br>
-[africa/europe-centric images] (http://oiswww.eumetsat.org/IPPS/html/latestImages.html) <br>
-[latin america-centric images] (http://goes.gsfc.nasa.gov/goescolor/goeseast/overview2/color_lrg/latestfull.jpg)
+|`style`|Style of the image. There are four diffrent styles available. You can preview them [asia-centric images](http://rammb.cira.colostate.edu/ramsdis/online/himawari-8.asp), [africa/europe-centric images] (http://oiswww.eumetsat.org/IPPS/html/latestImages.html) , [latin america-centric images] (http://goes.gsfc.nasa.gov/goescolor/goeseast/overview2/color_lrg/latestfull.jpg)
 <br><br>**Type:** `string`<br>**Possible values:** `natColor`, `geoColor`, `airMass`, `fullBand`, `europeDiscNat`, `europeDiscSnow`, `centralAmericaDiscNat` |
 |`imageSize`|Defines the size of the displayed image in pixels. <br><br>**Type:** `integer`<br>**Default value:** `600`|
 |`updateInterval`|How often the image is updated. There is a new picture uploadet every 10 minutes. So there is no need to go faster.<br><br>**Default value:** `10 • 60 • 1000 // every 10 minutes`|
