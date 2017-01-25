@@ -25,7 +25,9 @@ Module.register("MMM-Globe", {
 			'airMass': 'http://rammb.cira.colostate.edu/ramsdis/online/images/latest/himawari-8/full_disk_ahi_rgb_airmass.jpg',
 			'fullBand': 'http://rammb.cira.colostate.edu/ramsdis/online/images/latest/himawari-8/himawari-8_band_03_sector_02.gif',
 			'europeDiscNat': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBNatColour_LowResolution.jpg',
-			'europeDiscSnow': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg'
+			'europeDiscSnow': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg',
+			'centralAmericaDiscNat': 'http://goes.gsfc.nasa.gov/goescolor/goeseast/overview2/color_med/latestfull.jpg'
+
 		}
 		this.hiResImageUrls = {
 			'natColor': 'http://rammb.cira.colostate.edu/ramsdis/online/images/latest_hi_res/himawari-8/full_disk_ahi_natural_color.jpg',
@@ -33,7 +35,8 @@ Module.register("MMM-Globe", {
 			'airMass': 'http://rammb.cira.colostate.edu/ramsdis/online/images/latest_hi_res/himawari-8/full_disk_ahi_rgb_airmass.jpg',
 			'fullBand': 'http://rammb.cira.colostate.edu/ramsdis/online/images/latest/himawari-8/himawari-8_band_03_sector_02.gif',
 			'europeDiscNat': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBNatColour_LowResolution.jpg',
-			'europePartSnow': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg'
+			'europePartSnow': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg',
+			'centralAmericaDiscNat': 'http://goes.gsfc.nasa.gov/goescolor/goeseast/overview2/color_lrg/latestfull.jpg'
 		}
 		console.log(this.imageUrls[this.config.style]);
 		if (this.config.ownImagePath != '') {
@@ -56,17 +59,21 @@ Module.register("MMM-Globe", {
 	},
 
 	// Override dom generator.
+
 	getDom: function () {
 		var wrapper = document.createElement("div");
 		if (this.config.style == "europeDiscNat") {
-			//wrapper.style.height = "587px";
 			wrapper.style.height = 0.98 * this.config.imageSize - 1 + "px";
 			wrapper.style.overflow = "hidden";
 		}
 
+
 		var image = document.createElement("img");
 		if (this.config.ownImagePath != '') {
 			image.src = this.url;
+		} else if (this.config.style == "centralAmericaDiscNat"){
+			image.src = this.url + '?' + new Date().getTime();
+			image.className = 'MMM-Globe-image-centralAmericaDiscNat';
 		} else {
 			image.src = this.url + '?' + new Date().getTime();
 			image.className = 'MMM-Globe-image';
