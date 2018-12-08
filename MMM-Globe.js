@@ -26,7 +26,7 @@ Module.register("MMM-Globe", {
 			'fullBand': 'http://rammb.cira.colostate.edu/ramsdis/online/images/latest/himawari-8/himawari-8_band_03_sector_02.gif',
 			'europeDiscNat': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBNatColour_LowResolution.jpg',
 			'europeDiscSnow': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg',
-			'centralAmericaDiscNat': 'http://goes.gsfc.nasa.gov/goescolor/goeseast/overview2/color_med/latestfull.jpg'
+			'centralAmericaDiscNat': 'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/20183421830_GOES16-ABI-FD-GEOCOLOR-678x678.jpg'
 
 		}
 		this.hiResImageUrls = {
@@ -36,7 +36,7 @@ Module.register("MMM-Globe", {
 			'fullBand': 'http://rammb.cira.colostate.edu/ramsdis/online/images/latest/himawari-8/himawari-8_band_03_sector_02.gif',
 			'europeDiscNat': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBNatColour_LowResolution.jpg',
 			'europePartSnow': 'http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg',
-			'centralAmericaDiscNat': 'http://goes.gsfc.nasa.gov/goescolor/goeseast/overview2/color_lrg/latestfull.jpg'
+			'centralAmericaDiscNat': 'https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/20183421830_GOES16-ABI-FD-GEOCOLOR-1808x1808.jpg'
 		}
 		console.log(this.imageUrls[this.config.style]);
 		if (this.config.ownImagePath != '') {
