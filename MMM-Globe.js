@@ -7,6 +7,7 @@
  * MIT Licensed.
  */
 
+// Promise based image loader with error handling
 const loadImage = src =>
   new Promise(resolve => {
     const image = new Image();
@@ -15,7 +16,8 @@ const loadImage = src =>
     image.src = src;
   });
 
-let successfullyLoadedWrapper = null;
+// Store last successfully loaded image in case the next one fails to load
+let successfullyLoadedImageWrapper = null;
 
 Module.register("MMM-Globe", {
   // Default module config.
@@ -23,7 +25,7 @@ Module.register("MMM-Globe", {
     style: "geoColor",
     imageSize: 600,
     ownImagePath: "",
-    updateInterval: 10 * 60 * 1000
+    updateInterval: 10 * 60 * 1000  // 10 minutes
   },
 
   start: function() {
@@ -43,7 +45,7 @@ Module.register("MMM-Globe", {
       europeDiscSnow:
         "http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg",
       centralAmericaDiscNat:
-        "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/20183421830_GOES16-ABI-FD-GEOCOLOR-678x678.jpg"
+        "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/678x678.jpg"
     };
     this.hiResImageUrls = {
       natColor:
@@ -59,9 +61,8 @@ Module.register("MMM-Globe", {
       europePartSnow:
         "http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg",
       centralAmericaDiscNat:
-        "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/20183421830_GOES16-ABI-FD-GEOCOLOR-1808x1808.jpg"
+        "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/1808x1808.jpg"
     };
-    console.log(this.imageUrls[this.config.style]);
     if (this.config.ownImagePath != "") {
       this.url = this.config.ownImagePath;
     } else {
@@ -72,7 +73,6 @@ Module.register("MMM-Globe", {
       }
       setInterval(function() {
         self.updateDom(1000);
-        console.log("update");
       }, this.config.updateInterval);
     }
   },
@@ -81,36 +81,35 @@ Module.register("MMM-Globe", {
     return ["MMM-Globe.css"];
   },
 
-  // Override dom generator.
-
   getDom: async function() {
-    var wrapper = document.createElement("div");
-    if (this.config.style == "europeDiscNat") {
-      wrapper.style.height = 0.98 * this.config.imageSize - 1 + "px";
-      wrapper.style.overflow = "hidden";
-    }
-
     const { image, isError } = await loadImage(
       this.url + "?" + new Date().getTime()
     );
 
-    if (this.config.style === "centralAmericaDiscNat") {
-      image.className = "MMM-Globe-image-centralAmericaDiscNat";
-    } else {
-      image.className = "MMM-Globe-image";
-    }
-
-    image.width = this.config.imageSize.toString();
-    image.height = this.config.imageSize.toString();
-
     if (!isError) {
-	  wrapper.appendChild(image);
-	  successfullyLoadedWrapper = wrapper
-	  return wrapper
-    } else if (successfullyLoadedWrapper) {
-		return successfullyLoadedWrapper
-	}
+      // If the image loaded show it
+      var wrapper = document.createElement("div");
+      if (this.config.style == "europeDiscNat") {
+        wrapper.style.height = 0.98 * this.config.imageSize - 1 + "px";
+        wrapper.style.overflow = "hidden";
+      }
 
+      if (this.config.style === "centralAmericaDiscNat") {
+        image.className = "MMM-Globe-image-centralAmericaDiscNat";
+      } else {
+        image.className = "MMM-Globe-image";
+      }
+
+      image.width = this.config.imageSize.toString();
+      image.height = this.config.imageSize.toString();
+      wrapper.appendChild(image);
+      successfullyLoadedImageWrapper = wrapper;
+      return wrapper;
+    } else if (successfullyLoadedImageWrapper) {
+      // If there was an error loading the image show the last successfully loaded image
+      return successfullyLoadedImageWrapper;
+    }
+    // If we haven't successfully loaded an image yet show nothing
     return document.createElement("div");
   }
 });
