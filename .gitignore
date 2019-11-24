@@ -3,3 +3,7 @@
 # Example .gitignore files: https://github.com/github/gitignore
 /bower_components/
 /node_modules/
+/.vs/slnx.sqlite
+/.vs/config/applicationhost.config
+/.vs/ProjectSettings.json
+/.vs/MMM-Globe/v15/.suo
