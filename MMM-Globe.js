@@ -41,9 +41,9 @@ Module.register("MMM-Globe", {
       fullBand:
         "http://rammb.cira.colostate.edu/ramsdis/online/images/latest/himawari-8/himawari-8_band_03_sector_02.gif",
       europeDiscNat:
-        "http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBNatColour_LowResolution.jpg",
+        "https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSG_RGBNatColourEnhncd_LowResolution.jpg",
       europeDiscSnow:
-        "http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg",
+        "https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSG_RGBSolarDay_LowResolution.jpg",
       centralAmericaDiscNat:
         "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/678x678.jpg"
     };
@@ -57,9 +57,9 @@ Module.register("MMM-Globe", {
       fullBand:
         "http://rammb.cira.colostate.edu/ramsdis/online/images/latest/himawari-8/himawari-8_band_03_sector_02.gif",
       europeDiscNat:
-        "http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBNatColour_LowResolution.jpg",
+        "https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSG_RGBNatColourEnhncd_LowResolution.jpg",
       europePartSnow:
-        "http://oiswww.eumetsat.org/IPPS/html/latestImages/EUMETSAT_MSG_RGBSolarDay_CentralEurope.jpg",
+        "https://eumetview.eumetsat.int/static-images/latestImages/EUMETSAT_MSG_RGBSolarDay_LowResolution.jpg",
       centralAmericaDiscNat:
         "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/1808x1808.jpg"
     };
@@ -71,10 +71,14 @@ Module.register("MMM-Globe", {
       } else {
         this.url = this.imageUrls[this.config.style];
       }
-      setInterval(function() {
-        self.updateDom(1000);
-      }, this.config.updateInterval);
     }
+
+      //Update module after interval set in config (default 10 minutes)
+      if (this.config.updateInterval > 0) {
+          setInterval(function () {
+              self.updateDom(1000);
+          }, this.config.updateInterval);
+      }
   },
 
   getStyles: function() {
