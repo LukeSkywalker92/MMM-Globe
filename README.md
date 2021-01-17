@@ -1,6 +1,6 @@
 MMM-Globe
 ===================
-This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror). It can display live images of our planet. The pictures are taken from the Himawari-8 sattelite. You can also display custum pictures.
+This a module for the [MagicMirror](https://github.com/MichMich/MagicMirror). It can display live images of our planet. The pictures are taken from the Himawari-8 sattelite. You can also display custom pictures.
 
 ## Preview
 
